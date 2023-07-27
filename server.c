@@ -43,10 +43,12 @@ int getRow(int cell){
 int getCol(int cell){
         return (cell-1)%3;
 }
-
+void insertInput(int index,int sign,int *board[3][3]){
+    *board[getRow(index)][getCol(index)]=sign;
+}
 int main(){
     int board[3][3]={{0,0,0},{0,0,0},{0,0,0}};
-    enum Signs{x,o};
+    enum Signs{x=1,o=2};
     enum Signs playerSign;
     bool winner=false;
     int rounds=7;
