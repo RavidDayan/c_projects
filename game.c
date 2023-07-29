@@ -7,22 +7,16 @@ int getRow(int cell){
 int getCol(int cell){
         return (cell-1)%3;
 }
-int canBeInserted(int board[3][3],int index){
-    return (board[getRow(index)][getCol(index)]==0)?1:0;
+int canBeInserted(int (*pBoard)[3][3],int index){
+    return ((*pBoard)[getRow(index)][getCol(index)]==0)?1:0;
 }
 int isCellLegal(int index){
     return (index<1 || index>9)?0:1;
 }
-
-int boardLength(int board[3][3]){
-    return sizeof(board[0])/sizeof(board[0][0]);
-}
-
-void printBoard(int board[3][3]){
-    int length=boardLength(board);
-    for(int i=0;i<length;i++){
-        for(int j=0;j<length;j++){
-            switch (board[i][j])
+void printBoard(int (*pBoard)[3][3]){   
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            switch ((*pBoard)[i][j])
             {
             case 0:
                 printf(" _ ");
@@ -39,9 +33,8 @@ void printBoard(int board[3][3]){
         printf("\n");
     }
 }
-
-int getPlayerInput(int board[3][3]){
-    int input;
+int getPlayerInput(int (*pBoard)[3][3]){
+    int input=0;
     do{
         printf("please enter a number between 1 to 9 :");
         scanf("%d",&input);
@@ -49,34 +42,32 @@ int getPlayerInput(int board[3][3]){
             printf("invalid cell number, please try again\n");
         }
         else{
-            if (canBeInserted(board,input)==0){
+            if (canBeInserted(pBoard,input)==0){
                     printf("cell is taken, please try again\n");
                 }
         }
-    }while(isCellLegal(input)==0 || canBeInserted(board,input)==0);
+    }while(isCellLegal(input)==0 || canBeInserted(pBoard,input)==0);
     return input;
 }
-
-
-void insertInput(int index,int sign,int board[3][3]){
-    board[getRow(index)][getCol(index)]=sign;
+void insertInput(int index,int sign,int (*pBoard)[3][3]){
+    (*pBoard)[getRow(index)][getCol(index)]=sign;
 }
-int findWinner(int board[3][3]){
+int findWinner(int (*pBoard)[3][3]){
     for(int i=0;i<3;i++){
-        if(board[i][0]==board[i][1] && board[i][1]==board[i][2] && board[i][1]!=0){
-            return board[i][0];
+        if((*pBoard)[i][0]==(*pBoard)[i][1] && (*pBoard)[i][1]==(*pBoard)[i][2] && (*pBoard)[i][1]!=0){
+            return (*pBoard)[i][0];
         }
     }
     for(int i=0;i<3;i++){
-        if(board[0][i]==board[1][i] && board[1][i]==board[2][i] && board[1][i]!=0){
-            return board[i][0];
+        if((*pBoard)[0][i]==(*pBoard)[1][i] && (*pBoard)[1][i]==(*pBoard)[2][i] && (*pBoard)[1][i]!=0){
+            return (*pBoard)[i][0];
         }
     }
-    if(board[0][0]==board[1][1] && board[1][1]==board[2][2] && board[1][1]!=0){
-        return board[1][1];
+    if((*pBoard)[0][0]==(*pBoard)[1][1] && (*pBoard)[1][1]==(*pBoard)[2][2] && (*pBoard)[1][1]!=0){
+        return (*pBoard)[1][1];
     }
-    if(board[0][2]==board[1][1] && board[1][1]==board[2][0] && board[1][1]!=0){
-        return board[1][1];
+    if((*pBoard)[0][2]==(*pBoard)[1][1] && (*pBoard)[1][1]==(*pBoard)[2][0] && (*pBoard)[1][1]!=0){
+        return (*pBoard)[1][1];
     }
     return 0;
 }
@@ -90,6 +81,7 @@ void switchPLayer(int *pPlayerSign){
 }
 int main(){
     int board[3][3]={{0,0,0},{0,0,0},{0,0,0}};
+    int (*pBoard)[3][3]=&board;
     int playerSign=1;
     int playerInput;
     int winner=0;
@@ -97,10 +89,10 @@ int main(){
     while(winner==0 && rounds<=9){
         rounds++;
         switchPLayer(&playerSign);
-        playerInput=getPlayerInput(board);
-        insertInput(playerInput,playerSign,board);
-        winner=findWinner(board);
-        printBoard(board);
+        playerInput=getPlayerInput(pBoard);
+        insertInput(playerInput,playerSign,pBoard);
+        winner=findWinner(pBoard);
+        printBoard(pBoard);
     }
 
     if(winner==0){
