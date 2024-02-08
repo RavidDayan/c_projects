@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "mymat.h": "c",
+        "stdio.h": "c"
+    }
+}

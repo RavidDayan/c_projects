@@ -8,17 +8,19 @@ void initializeMatrix(mat *result)
     {
         for (j = 0; j < MAT_SIZE; j++)
         {
-            result[i][j] = 0;
+            (*result)[i][j] = 0;
         }
     }
 }
 void copy(mat *matA, mat *des)
 {
+    int i;
+    int j;
     for (i = 0; i < MAT_SIZE; i++) /*hard copy of result to destenation matrix*/
     {
         for (j = 0; j < MAT_SIZE; j++)
         {
-            des[i][j] = matA[i][j];
+            (*des)[i][j] = (*matA)[i][j];
         }
     }
 }
