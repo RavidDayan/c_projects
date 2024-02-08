@@ -83,6 +83,15 @@ void mult(mat *matA, mat *matB, mat *des)
 }
 void multS(mat *matA, float scalar, mat *des)
 {
+    int i;
+    int j;
+    for (i = 0; i < MAT_SIZE; i++)
+    {
+        for (j = 0; j < MAT_SIZE; j++)
+        {
+            temp[i][j] = matA[i][j] * scalar;
+        }
+    }
 }
 void trans(mat *matA, mat *des)
 {
