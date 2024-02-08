@@ -1,0 +1,16 @@
+typedef float mat [4][4];
+
+void add(mat *matA,mat *matB,mat *des);
+void sub(mat *matA,mat *matB,mat *des);
+void mult(mat *matA,mat *matB,mat *des);
+void multS(mat *matA,float scalar,mat *des);
+void trans(mat *matA,mat *des);
+
+CC = gcc
+CFLAGS =-Wall -ansi -pedantic
+
+all: get_name
+
+get_name: get_name.c
+	$(CC) $(CFLAGS) get_name.c  -o get_name
+
