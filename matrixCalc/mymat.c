@@ -12,7 +12,16 @@ void initializeMatrix(mat *result)
         }
     }
 }
-
+void copy(mat *matA, mat *des)
+{
+    for (i = 0; i < MAT_SIZE; i++) /*hard copy of result to destenation matrix*/
+    {
+        for (j = 0; j < MAT_SIZE; j++)
+        {
+            des[i][j] = matA[i][j];
+        }
+    }
+}
 void add(mat *matA, mat *matB, mat *des)
 {
     int i;
@@ -26,13 +35,7 @@ void add(mat *matA, mat *matB, mat *des)
             temp[i][j] = matA[i][j] + matB[i][j];
         }
     }
-    for (i = 0; i < MAT_SIZE; i++) /*hard copy of result to destenation matrix*/
-    {
-        for (j = 0; j < MAT_SIZE; j++)
-        {
-            des[i][j] = temp[i][j];
-        }
-    }
+    copy(temp, des);
 }
 void sub(mat *matA, mat *matB, mat *des)
 {
@@ -47,13 +50,7 @@ void sub(mat *matA, mat *matB, mat *des)
             temp[i][j] = matA[i][j] - matB[i][j];
         }
     }
-    for (i = 0; i < MAT_SIZE; i++) /*hard copy of result to destenation matrix*/
-    {
-        for (j = 0; j < MAT_SIZE; j++)
-        {
-            des[i][j] = temp[i][j];
-        }
-    }
+    copy(temp, des);
 }
 void mult(mat *matA, mat *matB, mat *des)
 {
@@ -73,13 +70,7 @@ void mult(mat *matA, mat *matB, mat *des)
             }
         }
     }
-    for (i = 0; i < MAT_SIZE; i++) /*hard copy of result to destenation matrix*/
-    {
-        for (j = 0; j < MAT_SIZE; j++)
-        {
-            des[i][j] = temp[i][j];
-        }
-    }
+    copy(temp,des);
 }
 void multS(mat *matA, float scalar, mat *des)
 {
@@ -95,4 +86,14 @@ void multS(mat *matA, float scalar, mat *des)
 }
 void trans(mat *matA, mat *des)
 {
+    int i;
+    int j;
+    for (i = 0; i < MAT_SIZE; i++)
+    {
+        for (j = 0; j < MAT_SIZE; j++)
+        {
+            temp[j][i] = matA[i][j];
+        }
+    }
+    copy(temp,des);
 }

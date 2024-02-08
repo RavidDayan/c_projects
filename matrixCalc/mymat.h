@@ -8,3 +8,4 @@ void mult(mat *matA,mat *matB,mat *des);
 void multS(mat *matA,float scalar,mat *des);
 void trans(mat *matA,mat *des);
 void initializeMatrix();
+void copy(mat *matA,mat *des);
