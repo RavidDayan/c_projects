@@ -1,19 +1,48 @@
 #include <stdio.h>
-#include "mymat.c"
+#include <stdlib.h>
+#include "mymat.h"
 
-int main(){
-    int i;
-    int j;
-    mat temp;
-    initializeMatrix(temp);
-    temp[1][1]=10;
-    for (i = 0; i < MAT_SIZE; i++) /*hard copy of result to destenation matrix*/
-    {
-        for (j = 0; j < MAT_SIZE; j++)
-        {
-               printf("%f",temp[i][j]); 
-        }
-    }
-    printf("hello");
+/*global variables*/
+#define inputFile "input.txt"
+
+/*Functions declerations*/
+void proccessCommands(char *fileName);
+void proccessCommand(char *command);
+void executeCommand(char *command);
+
+/*Functions implementations*/
+int main()
+{
+    mat MAT_A;
+    mat MAT_B;
+    mat MAT_C;
+    mat MAT_D;
+    mat MAT_E;
+    mat MAT_F;
+    mat *Mats[6] = {&MAT_A,&MAT_B,&MAT_C,&MAT_D,&MAT_E,&MAT_F};
+     proccessCommands(inputFile);
     return 0;
 }
+
+void proccessCommands(char *fileName)
+{
+    FILE *file = fopen(fileName, "r");
+    if (file == NULL)
+    {
+        perror("Error opening file");
+    }
+
+    char *command = NULL;
+    size_t len = 0;
+
+    while (getline(&command, &len, file) != -1)
+    {
+        printf("%s",command);
+    }
+    free(command);
+    fclose(file);
+}
+void proccessCommand(char *command)
+{
+}
+void executeCommand(char *command) {}
