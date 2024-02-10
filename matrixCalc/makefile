@@ -1,7 +1,7 @@
 CC = gcc
-CFLAGS =-Wall -ansi -pedantic
+CFLAGS = -Wall -ansi -pedantic
 
 all: mainmat
 
-get_name: mainmat.c
-	$(CC) $(CFLAGS) mainmat.c  -o mainmat
+mainmat: mainmat.c mymat.c
+	$(CC) $(CFLAGS) mainmat.c mymat.c -o mainmat
