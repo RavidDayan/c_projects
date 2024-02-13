@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <string.h>
 #include "mymat.h"
 #include "commands.h"
-#include "error.h"
+#include "errors.h"
 
 /*global variables*/
 #define MAX_FLOAT_CHAR 9
@@ -13,22 +12,22 @@
 void proccessCommands(FILE *inputCommands,mat **mats);
 void proccessCommand(char *command, int *args,float *tempScalar, mat tempMatrix);
 void executeCommand(int *args, mat **mats, float scalar, mat tempMatrix);
-int isComma(char character);
 int passWhiteSpace(int i, char *command);
 int arg1(int i, char *command, int *args);
 int arg2(int i, char *command, int *args);
 int arg3(int i, char *command, int *args);
 int arg4(int i, char *command, int *args);
 void endOfLine(int i, char *command, int *args);
-int getMatrix(int i, char *command, int *args, mat temp);
 int printMatrix(mat matrix);
+int getMatrix(int i, char *command, int *args, mat temp);
 int getScalar(int i, char *command, int *args);
+int isComma(char character);
 /*Functions implementations*/
 int main()
 {
     mat *mats[6];
-    FILE *inputCommands = stdin;       // Use stdin as the file pointer
-    fseek(inputCommands, 0, SEEK_SET); // Move the file pointer to the beginning of the redirection
+    FILE *inputCommands = stdin;
+    fseek(inputCommands, 0, SEEK_SET);
     proccessCommands(inputCommands,mats);
     return 0;
 }

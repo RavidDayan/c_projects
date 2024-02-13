@@ -1,20 +1,21 @@
-#include "cli.h"
+#include "commands.h"
+#include <string.h>
 
-commands[] = {
-    "read_mat\0",
-    "print_mat\0",
-    "add_mat\0",
-    "sub_mat\0",
-    "mul_mat\0",
-    "mul_scalar\0",
-    "trans_mat\0",
-    "stop\0",
-    "MAT_A\0",
-    "MAT_B\0",
-    "MAT_C\0",
-    "MAT_D\0",
-    "MAT_R\0",
-    "MAT_E\0"
+const char *commands[] = {
+    "read_mat",
+    "print_mat",
+    "add_mat",
+    "sub_mat",
+    "mul_mat",
+    "mul_scalar",
+    "trans_mat",
+    "stop",
+    "MAT_A",
+    "MAT_B",
+    "MAT_C",
+    "MAT_D",
+    "MAT_R",
+    "MAT_E"
 };
 
 int isMatrix(char *command)
