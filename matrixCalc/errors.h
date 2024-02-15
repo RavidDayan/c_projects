@@ -6,6 +6,7 @@
 #define ERROR_NOT_REAL_NUMBER -4
 #define ERROR_ILLEGAL_COMMA -5
 #define ERROR_ILLEGAL_EXTRA_CHARACTERS -6
+#define ERROR_MISSING_SPACE -7
 
 int isError(int *args);
 #endif

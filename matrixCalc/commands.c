@@ -14,8 +14,8 @@ const char *commands[] = {
     "MAT_B",
     "MAT_C",
     "MAT_D",
-    "MAT_R",
-    "MAT_E"
+    "MAT_E",
+    "MAT_F"
 };
 
 int isMatrix(char *command)
@@ -25,7 +25,7 @@ int isMatrix(char *command)
     {
         if (strcmp(command, commands[i]) == 0)
         {
-            return COMMANDS_LENGTH - i;
+            return i-8;
         }
     }
     return -1;

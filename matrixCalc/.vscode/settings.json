@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "mymat.h": "c",
+        "errors.h": "c",
+        "commands.h": "c",
         "stdio.h": "c",
         "string.h": "c",
         "stdlib.h": "c"

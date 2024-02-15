@@ -1,4 +1,5 @@
 #include "mymat.h"
+#include <stdio.h>
 
 void initializeMatrix(mat result)
 {
@@ -60,17 +61,19 @@ void mult(mat matA, mat matB, mat des)
     int i;
     int j;
     int k;
+    float result;
     mat temp; /*temporary array to store result*/
     initializeMatrix(temp);
     for (i = 0; i < MAT_SIZE; i++)
     {
         for (j = 0; j < MAT_SIZE; j++)
         {
+            result=0;
             for (k = 0; k < MAT_SIZE; k++)
             {
-
-                temp[i][j] = matA[i][k] * matA[k][j];
+                result = result+(matA[i][k] * matB[k][j]);
             }
+            temp[i][j]=result;
         }
     }
     copy(temp,des);
@@ -92,12 +95,14 @@ void trans(mat matA, mat des)
     int i;
     int j;
     mat temp;
+    mat tempTrans;
+    copy(des,temp);
     for (i = 0; i < MAT_SIZE; i++)
     {
         for (j = 0; j < MAT_SIZE; j++)
         {
-            temp[j][i] = matA[i][j];
+            tempTrans[i][j] = matA[j][i];
         }
     }
-    copy(temp,des);
+    copy(tempTrans,des);
 }
