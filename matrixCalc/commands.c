@@ -1,4 +1,5 @@
 #include "commands.h"
+#include "errors.h"
 #include <string.h>
 
 const char *commands[] = {
@@ -15,8 +16,7 @@ const char *commands[] = {
     "MAT_C",
     "MAT_D",
     "MAT_E",
-    "MAT_F"
-};
+    "MAT_F"};
 
 int isMatrix(char *command)
 {
@@ -25,10 +25,10 @@ int isMatrix(char *command)
     {
         if (strcmp(command, commands[i]) == 0)
         {
-            return i-8;
+            return i - 8;
         }
     }
-    return -1;
+    return ERROR_NOT_MATRIX;
 }
 int isCommand(char *command)
 {
@@ -40,5 +40,5 @@ int isCommand(char *command)
             return i;
         }
     }
-    return -1;
+    return ERROR_NOT_COMMAND;
 }
