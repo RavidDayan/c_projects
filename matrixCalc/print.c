@@ -64,9 +64,9 @@ int maxNumHeadLength(mat matrix)
 }
 void legalStop()
 {
-    printf("the program has ended successfuly");
+    printf("\nthe program has ended successfuly");
 }
 void ilegalStop()
 {
-    printf("the program has ended abrouptly,please close next time with command stop\n");
+    printf("\nthe program has ended abrouptly,please close next time with command stop\n");
 }
