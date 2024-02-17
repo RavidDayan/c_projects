@@ -1,7 +1,7 @@
 #include "mymat.h"
 #include <stdio.h>
 
-void initializeMatrix(mat result)
+void initializeMatrix(mat matrix) /*inserts a zero in eahc cell of matrix*/
 {
     int i;
     int j;
@@ -9,12 +9,11 @@ void initializeMatrix(mat result)
     {
         for (j = 0; j < MAT_SIZE; j++)
         {
-            result[i][j] = 0;
+            matrix[i][j] = 0;
         }
     }
 }
-
-void copy(mat src, mat des)
+void copy(mat src, mat des) /*copy's each cell from src matrix to des matrix*/
 {
     int i;
     int j;
@@ -26,7 +25,7 @@ void copy(mat src, mat des)
         }
     }
 }
-void add(mat matA, mat matB, mat des)
+void add(mat matA, mat matB, mat des) /*adds each cell from matA and matB and inserts to mat des*/
 {
     int i;
     int j;
@@ -41,7 +40,7 @@ void add(mat matA, mat matB, mat des)
     }
     copy(temp, des);
 }
-void sub(mat matA, mat matB, mat des)
+void sub(mat matA, mat matB, mat des) /*subtracts each cell from matA and matB and inserts to mat des*/
 {
     int i;
     int j;
@@ -56,29 +55,29 @@ void sub(mat matA, mat matB, mat des)
     }
     copy(temp, des);
 }
-void mult(mat matA, mat matB, mat des)
+void mult(mat matA, mat matB, mat des) /*inserts to each i,j cell in des sum of multiplying each cell in row i from matA with each cell in col j from matB  */
 {
     int i;
     int j;
     int k;
-    float result;
-    mat temp; /*temporary array to store result*/
+    float result; /*sum of the result of each multplying of cell from A and B*/
+    mat temp;     /*temporary array to store result*/
     initializeMatrix(temp);
     for (i = 0; i < MAT_SIZE; i++)
     {
         for (j = 0; j < MAT_SIZE; j++)
         {
-            result=0;
+            result = 0;
             for (k = 0; k < MAT_SIZE; k++)
             {
-                result = result+(matA[i][k] * matB[k][j]);
+                result = result + (matA[i][k] * matB[k][j]);
             }
-            temp[i][j]=result;
+            temp[i][j] = result;
         }
     }
-    copy(temp,des);
+    copy(temp, des);
 }
-void multS(mat matA, float scalar, mat des)
+void multS(mat matA, float scalar, mat des) /*multiplys each cell from matA with scalar and inserts to mat des*/
 {
     int i;
     int j;
@@ -90,19 +89,17 @@ void multS(mat matA, float scalar, mat des)
         }
     }
 }
-void trans(mat matA, mat des)
+void trans(mat matA, mat des) /*transoforms each cell i,j from matA to cell j,i in des*/
 {
     int i;
     int j;
-    mat temp;
-    mat tempTrans;
-    copy(des,temp);
+    mat temp; /*holds the transform until its completed*/
     for (i = 0; i < MAT_SIZE; i++)
     {
         for (j = 0; j < MAT_SIZE; j++)
         {
-            tempTrans[i][j] = matA[j][i];
+            temp[i][j] = matA[j][i];
         }
     }
-    copy(tempTrans,des);
+    copy(temp, des);
 }
